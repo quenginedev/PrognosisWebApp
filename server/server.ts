@@ -20,6 +20,13 @@ app.post('/diagnose', async (req, res) => {
   res.json(diagnosis)
 })
 
+app.post('/follow-up', async (req, res) => {
+  const { getFollowUp } = useAiModel()
+  const prognosis = req.body
+  const followUp = await getFollowUp(prognosis)
+  console.log({followUp})
+  res.json(followUp)
+})
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
